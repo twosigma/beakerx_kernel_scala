@@ -1,0 +1,4 @@
+recursive-include beakerx/kernel *
+
+include setupbase.py
+
