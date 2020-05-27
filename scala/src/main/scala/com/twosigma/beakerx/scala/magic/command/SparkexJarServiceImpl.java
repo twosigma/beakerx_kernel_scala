@@ -42,7 +42,7 @@ public class SparkexJarServiceImpl implements SparkexJarService {
   private String getSparkexJar() {
     try {
       Path path = Paths.get(EnableSparkSupportMagicCommand.class.getProtectionDomain().getCodeSource().getLocation().toURI());
-      return path.getParent().getParent().getParent().resolve("sparkex").resolve("lib").resolve("sparkex.jar").toString();
+      return path.getParent().getParent().getParent().resolve("kernel").resolve("ext").resolve("sparkex.jar").toString();
     } catch (Exception e) {
       throw new RuntimeException(e);
     }
