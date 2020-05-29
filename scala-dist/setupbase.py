@@ -111,7 +111,7 @@ class BaseCommand(Command):
         return []
 
 
-def run_gradle(path=kernel_path, cmd='build', skip_tests=False):
+def run_gradle(path=kernel_path, cmd='install', skip_tests=False):
     """Return a Command for running gradle scripts.
 
     Parameters

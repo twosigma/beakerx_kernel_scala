@@ -31,7 +31,7 @@ cmdclass = create_cmdclass(develop_wrappers=[
     'java'
 ])
 
-cmdclass['java'] = run_gradle(cmd='build', skip_tests=False)
+cmdclass['java'] = run_gradle(cmd='install', skip_tests=False)
 
 setup_args = dict(
     name='beakerx-kernel-scala',
