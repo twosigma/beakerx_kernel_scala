@@ -6,11 +6,12 @@
 .gradle/
 /build/
 */build/
-
-scala-dist/beakerx/kernel/*
+*/out/
 
 # Python
 *.py[cod]
 __pycache__/
-scala-dist/dist
 *.egg-info/
+
+scala-dist/beakerx/kernel/*
+scala-dist/dist
