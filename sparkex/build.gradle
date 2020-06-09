@@ -60,7 +60,7 @@ dependencies {
 task copyDependencies(type: Copy) {
     from configurations.runtime
     from jar
-    into new File('../scala-dist/beakerx/kernel/', 'ext')
+    into new File('../scala-dist/beakerx_scala/kernel/', 'ext')
 }
 
 jar.finalizedBy copyDependencies

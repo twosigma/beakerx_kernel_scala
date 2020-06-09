@@ -34,10 +34,10 @@ cmdclass = create_cmdclass(develop_wrappers=[
 cmdclass['java'] = run_gradle(cmd='install', skip_tests=False)
 
 setup_args = dict(
-    name='beakerx-kernel-scala',
+    name='beakerx_kernel_scala',
     description='BeakerX: Beaker Extensions for Jupyter Notebook',
     long_description='BeakerX: Beaker Extensions for Jupyter Notebook',
-    version=get_version(os.path.join('beakerx', '_version.py')),
+    version=get_version(os.path.join('beakerx_scala', '_version.py')),
     author='Two Sigma Open Source, LLC',
     author_email='beakerx-feedback@twosigma.com',
     url='http://beakerx.com',
@@ -66,11 +66,11 @@ setup_args = dict(
     ],
     entry_points={
         'console_scripts': [
-            'beakerx-kernel-scala = beakerx:run'
+            'beakerx_kernel_scala = beakerx_scala:run'
         ]
     },
     package_data={
-        'beakerx': [
+        'beakerx_scala': [
             'kernel/*/kernel.json'
         ]
     },

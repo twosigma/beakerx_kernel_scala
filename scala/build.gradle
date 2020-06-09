@@ -73,11 +73,11 @@ distZip.dependsOn installDist
 task copyDependencies(type: Copy) {
     from configurations.runtime
     from jar
-    into new File('../scala-dist/beakerx/kernel/', 'lib')
+    into new File('../scala-dist/beakerx_scala/kernel/', 'lib')
 }
 task copyStaticContent(type: Copy) {
     from '.'
-    into new File('../scala-dist/beakerx/kernel/', '')
+    into new File('../scala-dist/beakerx_scala/kernel/', '')
     include '*.png'
     include 'kernel.json'
 }

@@ -30,12 +30,12 @@ def _kernel_name():
 
 def _base_classpath_for(kernel):
     return pkg_resources.resource_filename(
-        'beakerx', os.path.join('kernel', kernel))
+        'beakerx_scala', os.path.join('kernel', kernel))
 
 
 def _classpath():
     return pkg_resources.resource_filename(
-        'beakerx', os.path.join('kernel', 'lib', '*'))
+        'beakerx_scala', os.path.join('kernel', 'lib', '*'))
 
 
 def _copy_tree(src, dst):
@@ -48,7 +48,7 @@ def _install_kernels():
     base_classpath = _classpath()
     classpath = json.dumps(os.pathsep.join([base_classpath]))
     template = pkg_resources.resource_string(
-        'beakerx', os.path.join('kernel', 'kernel.json'))
+        'beakerx_scala', os.path.join('kernel', 'kernel.json'))
     contents = Template(template.decode()).substitute(PATH=classpath)
 
     with tempfile.TemporaryDirectory() as tmpdir:

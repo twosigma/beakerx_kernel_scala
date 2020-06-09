@@ -14,12 +14,12 @@
 
 from ._version import version_info, __version__
 
-from .commands import parse
+from .commands import parse_scala
 
 
 def run():
     try:
-        parse()
+        parse_scala()
     except KeyboardInterrupt:
         return 130
     return 0

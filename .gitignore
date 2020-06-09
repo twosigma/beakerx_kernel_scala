@@ -13,5 +13,5 @@
 __pycache__/
 *.egg-info/
 
-scala-dist/beakerx/kernel/*
+scala-dist/beakerx_scala/kernel/*
 scala-dist/dist
