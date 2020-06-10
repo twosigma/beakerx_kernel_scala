@@ -1,0 +1,87 @@
+/*
+ *  Copyright 2017 TWO SIGMA OPEN SOURCE, LLC
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+apply plugin: 'application'
+apply plugin: 'scala'
+
+mainClassName = 'com.twosigma.beakerx.scala.kernel.Scala'
+
+//need for compiling scala before java
+sourceSets {
+    main {
+        scala {
+            srcDirs = ['src/main/scala', 'src/main/java']
+        }
+        java {
+            srcDirs = []
+        }
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group: "com.twosigma", name: "beakerx-kernel-base", version: "$beakerxVersion"
+    compile group: 'org.scala-lang', name: 'scala-compiler', version: '2.12.8'
+    compile group: 'org.scala-lang', name: 'scala-library', version: '2.12.8'
+    compile group: 'jline', name: 'jline', version: '2.12'
+
+    testCompile group: 'org.scalatest', name: 'scalatest_2.12', version: '3.0.4'
+    testCompile group: "com.twosigma", name: "beakerx-kernel-base-test", version: "$beakerxVersion"
+}
+
+jar {
+    manifest {
+        attributes "Main-Class": "$mainClassName"
+    }
+}
+
+test {
+    maxHeapSize = '1800m'
+}
+
+task realclean
+realclean.dependsOn(clean)
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId 'com.twosigma'
+            artifactId 'beakerx-kernel-scala'
+            version "$beakerxVersion"
+            from components.java
+        }
+    }
+}
+
+distZip.dependsOn installDist
+
+task copyDependencies(type: Copy) {
+    from configurations.runtime
+    from jar
+    into new File('../scala-dist/beakerx_scala/kernel/', 'lib')
+}
+task copyStaticContent(type: Copy) {
+    from '.'
+    into new File('../scala-dist/beakerx_scala/kernel/', '')
+    include '*.png'
+    include 'kernel.json'
+}
+
+
+jar.finalizedBy copyDependencies
+jar.finalizedBy copyStaticContent
