@@ -61,4 +61,21 @@ jobs:
         conda activate beakerx
         pip install -r requirements.txt --verbose
         beakerx_kernel_scala install
-
+    - name: Checkout beakerx_tests repo
+      uses: actions/checkout@v2
+      with:
+        repository: twosigma/beakerx_tests
+        path: beakerx_tests 
+    - name: Run e2e tests (Scala kernel)
+      shell: bash -l {0}
+      run: |
+        cd $GITHUB_WORKSPACE/beakerx_tests/autotests
+        chmod +x gradlew
+        conda activate beakerx
+        python ci_tests.py --app=notebook --tst=scala.* 
+    - name: Publish Test Report
+      if: ${{ always() }}
+      uses: scacap/action-surefire-report@v1
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        report_paths: "**/test-results/test/TEST-*.xml"
