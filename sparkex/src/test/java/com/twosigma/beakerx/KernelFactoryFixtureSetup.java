@@ -15,6 +15,7 @@
  */
 package com.twosigma.beakerx;
 
+import com.twosigma.beakerx.evaluator.BxInspectMock;
 import com.twosigma.beakerx.evaluator.ClasspathScannerMock;
 import com.twosigma.beakerx.evaluator.EvaluatorResultTestWatcher;
 import com.twosigma.beakerx.evaluator.EvaluatorTest;
@@ -89,7 +90,8 @@ public class KernelFactoryFixtureSetup {
             getKernelParameters(),
             new EvaluatorTest.BeakexClientTestImpl(),
             magicCommandConfiguration.patterns(),
-            new ClasspathScannerMock());
+            new ClasspathScannerMock(),
+            new BxInspectMock());
     return new Scala(sessionId,
             evaluator,
             new Configuration(

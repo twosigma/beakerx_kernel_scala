@@ -19,6 +19,7 @@ package com.twosigma.beakerx.scala.evaluator;
 import com.twosigma.beakerx.KernelTest;
 import com.twosigma.beakerx.SimpleEvaluationObjectMock;
 import com.twosigma.beakerx.autocomplete.AutocompleteResult;
+import com.twosigma.beakerx.evaluator.BxInspectMock;
 import com.twosigma.beakerx.evaluator.ClasspathScannerMock;
 import com.twosigma.beakerx.evaluator.EvaluatorTest;
 import com.twosigma.beakerx.evaluator.MagicCommandAutocompletePatternsMock;
@@ -49,7 +50,8 @@ public class ScalaAutocompleteTest {
             EvaluatorTest.KERNEL_PARAMETERS,
             new EvaluatorTest.BeakexClientTestImpl(),
             new MagicCommandAutocompletePatternsMock(),
-            new ClasspathScannerMock());
+            new ClasspathScannerMock(),
+            new BxInspectMock());
   }
 
   @Before
@@ -118,7 +120,8 @@ public class ScalaAutocompleteTest {
                     EvaluatorTest.KERNEL_PARAMETERS,
                     new EvaluatorTest.BeakexClientTestImpl(),
                     new MagicCommandAutocompletePatternsMock(),
-                    new ClasspathScannerMock());
+                    new ClasspathScannerMock(),
+                    new BxInspectMock());
 
     try {
       //when

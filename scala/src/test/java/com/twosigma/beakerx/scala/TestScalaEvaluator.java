@@ -15,6 +15,7 @@
  */
 package com.twosigma.beakerx.scala;
 
+import com.twosigma.beakerx.evaluator.BxInspectMock;
 import com.twosigma.beakerx.evaluator.ClasspathScannerMock;
 import com.twosigma.beakerx.evaluator.EvaluatorTest;
 import com.twosigma.beakerx.evaluator.MagicCommandAutocompletePatternsMock;
@@ -42,7 +43,8 @@ public class TestScalaEvaluator {
             getKernelParameters(),
             new EvaluatorTest.BeakexClientTestImpl(),
             new MagicCommandAutocompletePatternsMock(),
-            new ClasspathScannerMock());
+            new ClasspathScannerMock(),
+            new BxInspectMock());
     return evaluator;
   }
 
@@ -56,7 +58,8 @@ public class TestScalaEvaluator {
             getKernelParameters(),
             new EvaluatorTest.BeakexClientTestImpl(),
             new MagicCommandAutocompletePatternsMock(),
-            new ClasspathScannerMock());
+            new ClasspathScannerMock(),
+            new BxInspectMock());
     return evaluator;
   }
 

@@ -24,6 +24,7 @@ import com.twosigma.beakerx.KernelSetUpFixtureTest;
 import com.twosigma.beakerx.KernelTest;
 import com.twosigma.beakerx.NamespaceClient;
 import com.twosigma.beakerx.RuntimetoolsMock;
+import com.twosigma.beakerx.evaluator.BxInspectMock;
 import com.twosigma.beakerx.evaluator.ClasspathScannerMock;
 import com.twosigma.beakerx.evaluator.EvaluatorTest;
 import com.twosigma.beakerx.kernel.BxKernelRunner;
@@ -78,7 +79,8 @@ public class ScalaAutotranslationTest extends KernelSetUpFixtureTest {
             EvaluatorTest.KERNEL_PARAMETERS,
             nc,
             magicCommandConfiguration.patterns(),
-            new ClasspathScannerMock());
+            new ClasspathScannerMock(),
+            new BxInspectMock());
     return new Scala(sessionId,
             evaluator,
             new Configuration(

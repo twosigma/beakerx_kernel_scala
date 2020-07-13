@@ -24,6 +24,7 @@ import com.twosigma.beakerx.evaluator.BaseEvaluator;
 import com.twosigma.beakerx.evaluator.ClasspathScanner;
 import com.twosigma.beakerx.evaluator.JobDescriptor;
 import com.twosigma.beakerx.evaluator.TempFolderFactory;
+import com.twosigma.beakerx.inspect.Inspect;
 import com.twosigma.beakerx.jvm.classloader.BeakerXUrlClassLoader;
 import com.twosigma.beakerx.jvm.object.EvaluationObject;
 import com.twosigma.beakerx.jvm.object.SimpleEvaluationObject;
@@ -55,8 +56,17 @@ public class ScalaEvaluator extends BaseEvaluator {
                         EvaluatorParameters evaluatorParameters,
                         BeakerXClient beakerxClient,
                         MagicCommandAutocompletePatterns autocompletePatterns,
-                        ClasspathScanner classpathScanner) {
-    super(id, sId, cellExecutor, tempFolderFactory, evaluatorParameters, beakerxClient, autocompletePatterns,classpathScanner);
+                        ClasspathScanner classpathScanner,
+                        Inspect inspect) {
+    super(id,
+            sId,
+            cellExecutor,
+            tempFolderFactory,
+            evaluatorParameters,
+            beakerxClient,
+            autocompletePatterns,
+            classpathScanner,
+            inspect);
     this.beakerxObjectFactory = beakerxObjectFactory;
     this.classLoader = newClassLoader();
     this.shell = createNewEvaluator();
