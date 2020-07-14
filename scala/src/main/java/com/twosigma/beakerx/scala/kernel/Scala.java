@@ -19,6 +19,7 @@ import com.twosigma.beakerx.BeakerXCommRepository;
 import com.twosigma.beakerx.CommRepository;
 import com.twosigma.beakerx.DisplayerDataMapper;
 import com.twosigma.beakerx.NamespaceClient;
+import com.twosigma.beakerx.evaluator.BxInspect;
 import com.twosigma.beakerx.evaluator.ClasspathScannerImpl;
 import com.twosigma.beakerx.evaluator.Evaluator;
 import com.twosigma.beakerx.evaluator.TempFolderFactoryImpl;
@@ -90,7 +91,8 @@ public class Scala extends Kernel {
               getKernelParameters(),
               namespaceClient,
               magicConfiguration.patterns(),
-              new ClasspathScannerImpl());
+              new ClasspathScannerImpl(),
+              new BxInspect(BxInspect.getInspectFile()));
       return new Scala(id,
               se,
               new Configuration(
