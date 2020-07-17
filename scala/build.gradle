@@ -18,6 +18,10 @@ apply plugin: 'scala'
 
 mainClassName = 'com.twosigma.beakerx.scala.kernel.Scala'
 
+configurations {
+    runtimetools
+}
+
 //need for compiling scala before java
 sourceSets {
     main {
@@ -39,6 +43,8 @@ dependencies {
     compile group: 'org.scala-lang', name: 'scala-compiler', version: '2.12.8'
     compile group: 'org.scala-lang', name: 'scala-library', version: '2.12.8'
     compile group: 'jline', name: 'jline', version: '2.12'
+
+    runtimetools group: "com.twosigma", name: "beakerx-runtimetools", version: "$beakerxVersion"
 
     testCompile group: 'org.scalatest', name: 'scalatest_2.12', version: '3.0.4'
     testCompile group: "com.twosigma", name: "beakerx-kernel-base-test", version: "$beakerxVersion"
@@ -85,3 +91,11 @@ task copyStaticContent(type: Copy) {
 
 jar.finalizedBy copyDependencies
 jar.finalizedBy copyStaticContent
+
+task copyRuntimetools(type: Copy) {
+    from configurations.runtimetools
+    from jar
+    into new File('../scala-dist/beakerx_scala/kernel/', 'ext')
+    include 'beakerx-runtimetools*.jar'
+}
+jar.finalizedBy copyRuntimetools
