@@ -16,9 +16,8 @@
 package com.twosigma.beakerx.scala.evaluator;
 
 import com.twosigma.beakerx.TryResult;
-import com.twosigma.beakerx.evaluator.InternalVariable;
 import com.twosigma.beakerx.jvm.object.EvaluationObject;
-import com.twosigma.beakerx.jvm.object.SimpleEvaluationObject;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -46,16 +45,23 @@ class ScalaCodeRunner implements Callable<TryResult> {
       theOutput.setOutputHandler();
       either = scalaEvaluator.getShell().evaluate(theOutput, theCode);
     } catch (Throwable e) {
-      if (e instanceof InterruptedException || e instanceof InvocationTargetException || e instanceof ThreadDeath) {
-        either = TryResult.createError(INTERUPTED_MSG);
-      } else {
-        StringWriter sw = new StringWriter();
-        PrintWriter pw = new PrintWriter(sw);
-        e.printStackTrace(pw);
-        either = TryResult.createError(sw.toString());
-      }
+      either = handleError(e);
     } finally {
       theOutput.clrOutputHandler();
+    }
+    return scalaEvaluator.processResult(either);
+  }
+
+  @NotNull
+  private TryResult handleError(Throwable e) {
+    TryResult either;
+    if (e instanceof InterruptedException || e instanceof InvocationTargetException || e instanceof ThreadDeath) {
+      either = TryResult.createError(INTERUPTED_MSG);
+    } else {
+      StringWriter sw = new StringWriter();
+      PrintWriter pw = new PrintWriter(sw);
+      e.printStackTrace(pw);
+      either = TryResult.createError(sw.toString());
     }
     return either;
   }
