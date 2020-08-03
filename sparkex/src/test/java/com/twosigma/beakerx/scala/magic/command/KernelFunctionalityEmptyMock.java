@@ -113,8 +113,18 @@ public class KernelFunctionalityEmptyMock implements KernelFunctionality {
   }
 
   @Override
-  public void killAllThreads() {
+  public void interruptKernel() {
 
+  }
+
+  @Override
+  public void interruptKernelDone() {
+
+  }
+
+  @Override
+  public boolean isInterrupting() {
+    return false;
   }
 
   @Override

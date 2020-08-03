@@ -4,5 +4,6 @@
   ],
   "display_name": "Scala",
   "language": "scala",
-  "env": { "PS1":"scala>"}
+  "env": { "PS1":"scala>"},
+  "interrupt_mode": "message"
 }
