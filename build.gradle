@@ -31,7 +31,7 @@ subprojects {
     apply plugin: 'maven-publish'
 
     ext {
-        beakerxVersion = "1.6-SNAPSHOT"
+        beakerxVersion = "2.0-SNAPSHOT"
     }
 
     compileJava {
