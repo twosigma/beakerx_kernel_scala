@@ -40,8 +40,8 @@ public class SparkUI extends VBox implements SparkUIApi {
 
   public static final String ONE_SPARK_SESSION_MSG_ERROR = "Cannot have more than one Spark session open in the same notebook.";
 
-  public static final String VIEW_NAME_VALUE = "SparkUI2View";
-  public static final String MODEL_NAME_VALUE = "SparkUI2Model";
+  public static final String VIEW_NAME_VALUE = "SparkUIView";
+  public static final String MODEL_NAME_VALUE = "SparkUIModel";
   public static final String PUT_SPARK_JOBS_IN_THE_BACKGROUND = "putSparkJobsInTheBackground";
   public static final String CANCELLED_SPARK_JOBS = "cancelledSparkJobs";
   public static final String SPARK_APP_ID = "sparkAppId";
